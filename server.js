@@ -16,8 +16,12 @@ const io = new Server(server, {
 
 app.use(express.static("public"));
 
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
+app.get("/a", (req, res) => {
+  res.sendFile(__dirname + "/public/index.html");
+});
+
+app.get("/b", (req, res) => {
+  res.sendFile(__dirname + "/public/index2.html");
 });
 
 io.on("connection", (socket) => {
