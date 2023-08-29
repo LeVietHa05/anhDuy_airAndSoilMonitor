@@ -100,7 +100,7 @@
       socket.emit("UPDATE", "update");
     });
 
-    socket.on("message", (data) => {
+    socket.on("message1", (data) => {
       nito.innerText = `${data.nito} mg/Kg`;
       photpho.innerText = `${data.photpho} mg/Kg`;
       kali.innerText = `${data.kali} mg/Kg`;

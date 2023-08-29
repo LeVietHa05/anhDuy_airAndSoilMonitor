@@ -16,11 +16,15 @@ const io = new Server(server, {
 
 app.use(express.static("public"));
 
-app.get("/a", (req, res) => {
+app.get("/", (req, res) => {
+  req.redirect("/air");
+});
+
+app.get("/air", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
 
-app.get("/b", (req, res) => {
+app.get("/soil", (req, res) => {
   res.sendFile(__dirname + "/public/index2.html");
 });
 
@@ -33,6 +37,10 @@ io.on("connection", (socket) => {
   socket.on("message", (data) => {
     log(`message from ${data.clientID} via socket id: ${socket.id}`);
     io.emit("message", data);
+  });
+  socket.on("message1", (data) => {
+    log(`message from ${data.clientID} via socket id: ${socket.id}`);
+    io.emit("message1", data);
   });
 
   socket.on("UPDATE", (data) => {
