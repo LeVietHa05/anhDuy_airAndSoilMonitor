@@ -20,7 +20,7 @@
         <svg class="bi me-2" width="40" height="32">
           <use xlink:href="#bootstrap"></use>
         </svg>
-        <span class="fs-4 bcc-purle fw-bolder fs-2">Thiết bị quản trắc chất lượng không khí</span>
+        <span class="fs-4 bcc-purle fw-bolder fs-2">Thiết bị quản trắc chất lượng bầu đất</span>
       </a>
     </header>
 
@@ -143,11 +143,11 @@
       }
     }
 
-    const confignitoCharts = chartGen("Chất lượng không khí", labels);
-    const configphotphoCharts = chartGen("Nồng độ khí cháy", labels);
-    const configkaliCharts = chartGen("Nồng độ khí CO", labels);
+    const confignitoCharts = chartGen("Nồng độ Nito", labels);
+    const configphotphoCharts = chartGen("Nồng độ photpho", labels);
+    const configkaliCharts = chartGen("Nồng độ Kali", labels);
     const configTempCharts = chartGen("Nhiệt độ", labels);
-    const configHumiCharts = chartGen("Độ ẩm", labels);
+    const configHumiCharts = chartGen("Độ ẩm đất", labels);
     const configBuiCharts = chartGen("Nồng độ bụi", labels);
 
     const nitoChart = new Chart(
@@ -184,6 +184,27 @@
       });
       chart.update();
     }
+  </script>
+  <script>
+    setInterval(() => {
+        let nitorandom = Math.floor((Math.random() * 2 + 12) * 100) / 100;
+        let photphorandom = Math.floor((Math.random() * 5 + 30) * 100) / 100;
+        let kalirandom = Math.floor((Math.random() * 2 + 20) * 100) / 100;
+        let humirandom = Math.floor((Math.random() * 4 + 60) * 100) / 100;
+
+        nito.innerText = `${nitorandom} mg/Kg`;
+        photpho.innerText = `${photphorandom} mg/Kg`;
+        kali.innerText = `${kalirandom} mg/Kg`;
+        humi.innerText = `${humirandom} %`;
+        addData(nitoChart, nitorandom);
+        addData(photphoChart, photphorandom);
+        addData(kaliChart, kalirandom);
+        addData(humiChart, humirandom);
+        if (nitoChart.data.datasets[0].data.length > 30) removeData(nitoChart);
+        if (photphoChart.data.datasets[0].data.length > 30) removeData(photphoChart);
+        if (kaliChart.data.datasets[0].data.length > 30) removeData(kaliChart);
+        if (humiChart.data.datasets[0].data.length > 30) removeData(humiChart);
+      }, 3000);
   </script>
 </body>
 
